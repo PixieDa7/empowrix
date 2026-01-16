@@ -15,7 +15,12 @@
                     <img src="../images/65c145e64ba507a390b1abab_EMPOWRIX%20RECRUITMENT%20LOGO%20(3).png" alt="Empowrix">
                     <span class="logo-text">EMPOWRIX</span>
                 </a>
-                <nav>
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav id="nav-menu">
                     <ul>
                         <li><a href="../index.html">Home</a></li>
                         <li><a href="../careers.html" class="active">Careers</a></li>
@@ -157,5 +162,32 @@
             </div>
         </div>
     </footer>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+        
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
+    </script>
 </body>
 </html>
